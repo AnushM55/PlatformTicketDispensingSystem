@@ -7,22 +7,56 @@ import java.sql.Statement;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        String strUrl = "jdbc:postgresql://localhost:5432/SampleDatabase";
-        String strUsr = "newadmin";
-        String PWD = "";
-        
-        try {
-            Connection conn = DriverManager.getConnection(strUrl, strUsr, PWD);
-            Statement stat = conn.createStatement();
-            ResultSet recst = stat.executeQuery("select * from SampleTable;");
-            System.out.println(recst.getMetaData());
-            conn.close();
+      
+      DBConn connection = new DBConn();
+      connection.ExecuteQuery("", false);
+      connection.CloseConnection();  
+                
+}
+}
+class DBConn{
+    Connection conn;
+    Statement stat;
+    ResultSet res;
+    String[] ConnectionInfo;
+    void SetConnectionInfo(String url ,String username,String password ){
+        this.ConnectionInfo = new String[]{url,username,password};
+    }   
+    DBConn(){
+        SetConnectionInfo("jdbc:postgresql://localhost:5432/SampleDatabase",
+        "newadmin", "Platform#36");
+        try{
+        conn = DriverManager.getConnection(ConnectionInfo[0],
+                                            ConnectionInfo[1],
+                                            ConnectionInfo[2]);
+        stat = conn.createStatement();
 
-            
-        }
+    }
     catch(Exception e){
-        System.err.println("error : "+e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
     }
 }
-}
+    void CloseConnection(){
+        try{
+        conn.close();
+        } catch (Exception e ){
+            System.err.println(e.getLocalizedMessage());
+        }
+    }
+    void ExecuteQuery(String query, boolean returnResult ){
+        try {
+        if (returnResult == true ){
+           
+            res = stat.executeQuery(query);
+        }else{
+            stat.executeQuery(query);
+        }
+
+    }
+        catch(Exception e ){
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+    }
+    
+
