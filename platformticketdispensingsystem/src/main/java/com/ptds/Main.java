@@ -1,18 +1,19 @@
 package com.ptds;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
+
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Main {
     public static void main(String[] args) {
-      
-      DBConn connection = new DBConn();
-      connection.ExecuteQuery("", false);
-      connection.CloseConnection();  
-                
-}
+  
+
+      DBConn connection = new DBConn("SampleDatabase");
+      connection.ExecuteQuery("\bd", false);
+      connection.CloseConnection();
+    }
 }
 class DBConn{
     Connection conn;
@@ -22,8 +23,8 @@ class DBConn{
     void SetConnectionInfo(String url ,String username,String password ){
         this.ConnectionInfo = new String[]{url,username,password};
     }   
-    DBConn(){
-        SetConnectionInfo("jdbc:postgresql://localhost:5432/SampleDatabase",
+    DBConn(String dbname){
+        SetConnectionInfo("jdbc:postgresql://localhost:5432/"+dbname,
         "newadmin", "Platform#36");
         try{
         conn = DriverManager.getConnection(ConnectionInfo[0],
@@ -33,7 +34,7 @@ class DBConn{
 
     }
     catch(Exception e){
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("SQL CONNECTION ERROR "+e.getLocalizedMessage());
     }
 }
     void CloseConnection(){
@@ -54,7 +55,7 @@ class DBConn{
 
     }
         catch(Exception e ){
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("QUERY  "+e.getLocalizedMessage());
         }
     }
     }
