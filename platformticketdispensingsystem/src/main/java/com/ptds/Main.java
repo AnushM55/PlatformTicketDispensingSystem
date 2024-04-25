@@ -11,7 +11,7 @@ public class Main {
   
 
       DBConn connection = new DBConn("SampleDatabase");
-      connection.ExecuteQuery("\bd", false);
+      connection.ExecuteQuery("", false);
       connection.CloseConnection();
     }
 }
