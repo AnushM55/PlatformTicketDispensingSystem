@@ -15,7 +15,7 @@ import javax.swing.text.MaskFormatter;
 
 public class GetGuestDetails {
 
-    public static void main(String[] args) {
+    GetGuestDetails() {
         new EnterGuestDetails();
     }
 }

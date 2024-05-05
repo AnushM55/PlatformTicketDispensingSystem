@@ -107,8 +107,15 @@ class PNR extends JFrame {
                 if(VerifyPNRNUmber(box.getText())){
                     /* Next Box Shows Up */
                     System.out.println("Success");
+                    if(JOptionPane.showConfirmDialog(submit,"Success!, Continue ?")
+                        ==
+                        JOptionPane.YES_OPTION){
+                            new GetGuestDetails();
+                        };
+                    
                 }else{
                     /* Try Again */
+                    JOptionPane.showMessageDialog(submit,"Invalid PNR Number, try again");
                     System.out.println("Failure");
                 }
             }
@@ -119,3 +126,4 @@ class PNR extends JFrame {
 
     }
 }
+
