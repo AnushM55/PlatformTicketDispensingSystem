@@ -11,7 +11,7 @@ import java.sql.*;
 
 class PNR extends JFrame {
     JFrame pnrFrame ;
-     DBConn dbConnectInfo ;
+    DBConn dbConnectInfo ;
     boolean VerifyPNRNUmber(String textboxContent) {
         if (dbConnectInfo == null){
             dbConnectInfo = new DBConn();
@@ -105,11 +105,11 @@ class PNR extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e){
                 if(VerifyPNRNUmber(box.getText())){
-                    /* Next Box Shows Up */
                     System.out.println("Success");
                     if(JOptionPane.showConfirmDialog(submit,"Success!, Continue ?")
                         ==
                         JOptionPane.YES_OPTION){
+                            pnrFrame.setVisible(false);
                             new GetGuestDetails();
                         };
                     
@@ -123,7 +123,10 @@ class PNR extends JFrame {
 
         ImageIcon image = new ImageIcon("Screenshot 2024-05-04 210030.png");
         image.setImage(image.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
-
+        pnrFrame.pack();
+    }
+    PNR(){
+        ShowPNRFrame();
     }
 }
 
