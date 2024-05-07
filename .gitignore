@@ -15,3 +15,13 @@ platformticketdispensingsystem/target/classes/com/ptds/PNR$2.class
 platformticketdispensingsystem/target/classes/com/ptds/DBConn.class
 platformticketdispensingsystem/target/classes/com/ptds/Main.class
 platformticketdispensingsystem/target/classes/com/ptds/DBConn.class
+platformticketdispensingsystem/target/classes/com/ptds/AddGuest.class
+platformticketdispensingsystem/target/classes/com/ptds/BankPage.class
+platformticketdispensingsystem/target/classes/com/ptds/EnterGuestDetails$2.class
+platformticketdispensingsystem/target/classes/com/ptds/EnterGuestDetails$3.class
+platformticketdispensingsystem/target/classes/com/ptds/GuestDetails.class
+platformticketdispensingsystem/target/classes/com/ptds/Main.class
+platformticketdispensingsystem/target/classes/com/ptds/Welcome$1.class
+platformticketdispensingsystem/src/main/java/com/ptds/AddGuest.java
+platformticketdispensingsystem/target/classes/com/ptds/Main.class
+platformticketdispensingsystem/target/classes/com/ptds/Main.class
