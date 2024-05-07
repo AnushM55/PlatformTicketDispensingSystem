@@ -2,7 +2,7 @@ package com.ptds;
 
 public class Main {
     public static void main(String[] args) {
-        PNR pnrFrame = new PNR();
-        pnrFrame.ShowPNRFrame();    
+       new GetGuestDetails();
+      // new Welcome();
     }
 }
