@@ -110,7 +110,7 @@ class PNR extends JFrame {
                         ==
                         JOptionPane.YES_OPTION){
                             pnrFrame.setVisible(false);
-                            new GetGuestDetails();
+                            new GetGuestDetails(box.getText());
                         };
                     
                 }else{
