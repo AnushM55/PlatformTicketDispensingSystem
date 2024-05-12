@@ -94,11 +94,15 @@ public class PlatformTicket extends JFrame {
     }
 
     private void setSystemDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-        Date now = new Date();
-        DateTextField.setText(dateFormat.format(now));
-        TimeTextField.setText(timeFormat.format(now));
+      //  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+       // SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+        //Date now = new Date();
+        DateTextField.setText(java.time.LocalDate.ofInstant(java.time.Instant.now(), 
+                              java.time.ZoneId.systemDefault()).toString());
+        TimeTextField.setText(java.time.LocalTime
+                                        .now().toString().replaceFirst("..........$","")
+
+        );
         DateTextField.setEditable(false);
         TimeTextField.setEditable(false);
     }

@@ -158,9 +158,10 @@ public class BankPage extends javax.swing.JFrame {
                     conn.setAutoCommit(false); // Disable auto-commit to start transaction
                     
                     // ] Check if the account exists
-                    String query = "SELECT balance FROM account WHERE account_no = ?";
+                    String query = "SELECT balance FROM account WHERE account_no = ? AND name = ?";
                     PreparedStatement statement = conn.prepareStatement(query);
                     statement.setString(1,  accountNumber);
+                    statement.setString(2,AccHolderTextField.getText());
                     ResultSet rset = statement.executeQuery();
                     if(rset.next()){
                         
@@ -168,7 +169,7 @@ public class BankPage extends javax.swing.JFrame {
                         System.out.println(currentBalance);
                         //  Deduct the payment amount from the current balance
                         if (currentBalance >= paymentAmount) {
-                            double updatedBalanceForUser = currentBalance + paymentAmount;
+                            double updatedBalanceForUser = currentBalance - paymentAmount;
                             
                             // Update the account balance
                             String updateQuery = "UPDATE account SET balance = balance + ? WHERE name = ? AND account_no = ?";
@@ -178,8 +179,16 @@ public class BankPage extends javax.swing.JFrame {
                             updateStatement.setString(3, "98766987651");
                             updateStatement.executeUpdate();
                             
-                            updateQuery = "UPDATE account SET balance = balance - ? WHERE name = ? AND account_no = ?";
-                            updateStatement.setDouble(1,paymentAmount);
+                            updateQuery = "UPDATE account SET balance = ? WHERE name = ? AND account_no = ?";
+                            updateStatement = conn.prepareStatement(updateQuery);
+                            updateStatement.setDouble(1,updatedBalanceForUser);
+                            updateStatement.setString(2, AccHolderTextField.getText());
+                            System.out.println(AccHolderTextField.getText()+AccNumberTextField.getText());
+                            updateStatement.setString(3, AccNumberTextField.getText());
+                            updateStatement.executeUpdate();
+                            
+                            
+
                             /* 
                             // Insert transaction record into another database table
                             */
@@ -205,7 +214,7 @@ public class BankPage extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "Insufficient Balance. Please Retry.", "Payment", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Invalid Account Number. Please Retry.", "Payment", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Invalid Account Number or name. Please Retry.", "Payment", JOptionPane.ERROR_MESSAGE);
                     }
                     
                     rset.close();
