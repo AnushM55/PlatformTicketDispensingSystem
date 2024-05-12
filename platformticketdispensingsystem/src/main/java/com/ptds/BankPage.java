@@ -15,9 +15,9 @@ class RandomNumber {
     int digits;
     
     public RandomNumber(int digitNo){
-
+      
       digits = digitNo;
-      state = 1 << 19 | (System.nanoTime()%1000); 
+      state = 1 << 19 | (System.nanoTime()%10000); 
 
     }
     public byte GenerateBit(){
@@ -163,21 +163,26 @@ public class BankPage extends javax.swing.JFrame {
                     statement.setString(1,  accountNumber);
                     ResultSet rset = statement.executeQuery();
                     if(rset.next()){
-                        double currentBalance = rset.getDouble("balance");
                         
+                        double currentBalance = rset.getDouble("balance");
+                        System.out.println(currentBalance);
                         //  Deduct the payment amount from the current balance
                         if (currentBalance >= paymentAmount) {
-                            double updatedBalance = currentBalance - paymentAmount;
+                            double updatedBalanceForUser = currentBalance + paymentAmount;
                             
                             // Update the account balance
-                            String updateQuery = "UPDATE account SET balance = ? WHERE name = ? AND account_no = ?";
+                            String updateQuery = "UPDATE account SET balance = balance + ? WHERE name = ? AND account_no = ?";
                             PreparedStatement updateStatement = conn.prepareStatement(updateQuery);
-                            updateStatement.setDouble(1, updatedBalance);
+                            updateStatement.setDouble(1, paymentAmount);
                             updateStatement.setString(2, "SASA RAILWAYS");
                             updateStatement.setString(3, "98766987651");
                             updateStatement.executeUpdate();
                             
+                            updateQuery = "UPDATE account SET balance = balance - ? WHERE name = ? AND account_no = ?";
+                            updateStatement.setDouble(1,paymentAmount);
+                            /* 
                             // Insert transaction record into another database table
+                            */
                             String insertQuery = "INSERT INTO banking_info(account_no,amount,transaction_id,name) VALUES(?, ?, ?, ?)";
                             PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
                             insertStatement.setString(1, accountNumber);
