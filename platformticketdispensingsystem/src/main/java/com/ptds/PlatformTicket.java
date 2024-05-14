@@ -195,7 +195,7 @@ public class PlatformTicket extends JFrame {
         PlatformNoTextField.setFont(new Font("Arial", 0, 15));
 
         AmountTextField.setFont(new Font("Arial", 0, 15));
-        AmountTextField.setText((this.FinalTicketInfo.size()*10)+"");
+        AmountTextField.setText((this.FinalTicketInfo.size()*GuestDetails.amount)+"");
         AmountTextField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 AmountTextFieldActionPerformed(evt);

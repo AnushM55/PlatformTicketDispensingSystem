@@ -26,6 +26,7 @@ public class GetGuestDetails {
     static boolean CanProceed;
 
     HashMap<Integer, GuestDetails> PassengerInfo;
+    JTextField amount;
 
     void PrintAllValuesInHashmap() {
 
@@ -49,8 +50,7 @@ public class GetGuestDetails {
         }
         return true;
     }
-    
-
+   
     GetGuestDetails(String receivedPNR) {
        
 
@@ -86,6 +86,11 @@ public class GetGuestDetails {
         JButton addGuest = new JButton("Add Guest");
         addGuest.setBounds(500, 150, 200, 45);
         pnrFrame.add(addGuest);
+         amount = new JTextField("Rs : ");
+        amount.setBounds(750,150,200,45);
+        amount.setFocusable(false);
+        amount.setEditable(false);
+        pnrFrame.add(amount);
         addGuest.setFocusable(false);
 
         JButton payment = new JButton("Proceed Payment");
@@ -118,13 +123,14 @@ public class GetGuestDetails {
         c.gridx = 0;
         c.weightx = 0;
         c.weighty = 0;
-        c.anchor = GridBagConstraints.NORTHEAST;
+        //c.anchor = GridBagConstraints.;
         addGuest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JPanel panel2 = createPanel2(panel1);
                 panel1.add(panel2, c);
                 panel1.revalidate();
+                amount.setText("Rs : "+(PassengerInfo.size()*GuestDetails.amount)) ;
                 
                 panel1.repaint();
                 scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
@@ -140,10 +146,10 @@ public class GetGuestDetails {
     private JPanel createPanel2(JPanel parent) {
         JPanel panel2 = new JPanel();
         panel2.setBackground(Color.lightGray);
-        panel2.setSize(new Dimension(900, 60));
+        panel2.setSize(new Dimension(1500, 60));
 
         // Set FlowLayout for panel2
-        panel2.setLayout(new FlowLayout(0));
+        panel2.setLayout(new FlowLayout());
         
 
         JLabel nameLabel = new JLabel("Name :");
@@ -214,6 +220,9 @@ public class GetGuestDetails {
                 parent.revalidate();
                 parent.repaint();
                 PassengerInfo.remove(cancelBtn.hashCode());
+                amount.setText("Rs : "+(PassengerInfo.size()*20.0)) ;
+            
+
 
             }
         });

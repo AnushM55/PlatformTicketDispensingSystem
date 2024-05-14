@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 class RandomNumber {
@@ -50,6 +51,8 @@ public class BankPage extends javax.swing.JFrame {
     public BankPage(HashMap<Integer,GuestDetails> map) {
         this.Map = map; 
         initComponents();
+        
+
     }
     
     private void initComponents() {
@@ -78,6 +81,7 @@ public class BankPage extends javax.swing.JFrame {
         AmtTextField = new javax.swing.JTextField();
         MakePayment = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -116,12 +120,14 @@ public class BankPage extends javax.swing.JFrame {
 
         IFSC_Label.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         IFSC_Label.setText("IFSC CODE :");
-
+        IFSCLabel.setEditable(false);
         AmountLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         AmountLabel.setText("Amount :");
 
         AmountTextField.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        AmountTextField.setText((Map.size()*10.0)+" ");
+        AmountTextField.setText((Map.size()*GuestDetails.amount)+" ");
+        AmountTextField.setEditable(false);
+        AmtTextField.setEditable(false);
         AmtTextField.setText(AmountTextField.getText());
         AccountNameLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         AccountNameLabel.setText("Account Name :");

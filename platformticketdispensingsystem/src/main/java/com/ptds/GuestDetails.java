@@ -42,6 +42,8 @@ class GuestDetails {
     JFormattedTextField PhoneNumber;
     static String PNR;
 
+    static int amount = 20;
+
     GuestDetails(JTextField name , JFormattedTextField PhNo){
         
         Name= name;
