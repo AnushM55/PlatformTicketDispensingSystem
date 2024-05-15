@@ -421,7 +421,7 @@ public class PlatformTicket extends JFrame {
             // pstmt.setString(2, DateTextField.getText());
             pstmt.setInt(2, Integer.valueOf(PersonTextField.getText()));
             pstmt.setInt(3, Integer.valueOf(PlatformNoTextField.getText()));
-            pstmt.setInt(4, Integer.valueOf(AmountTextField.getText()));
+            pstmt.setFloat(4, Float.valueOf(AmountTextField.getText()));
             pstmt.setString(6, GuestDetails.PNR);
             pstmt.setString(7, transac_id);
             Calendar calendar = Calendar.getInstance();
@@ -466,8 +466,7 @@ public class PlatformTicket extends JFrame {
             contentStream.close();
 
             // Save the PDF
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String fileName = "PlatformTicket_" + dateFormat.format(new Date()) + ".pdf";
+            String fileName = "PlatformTicket_" + DateTextField.getText() + ".pdf";
             doc.save(fileName);
             doc.close();
 
