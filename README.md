@@ -1,7 +1,8 @@
-# Platform Ticket Dispensing System 
+# SASA Platform Ticket Dispensing System 
 - A Java based train-platform ticket dispensing system, that gives the user an intuitive interface to book platform tickets for themselves and the guests they are accompanied with
 - Frontend : JavaFX and Swing
 - Database : Postgres
+
 
 ## Welcome page
 ![Screenshot_20240909_204120](https://github.com/user-attachments/assets/84d4566b-b499-469c-b627-491693920266)
